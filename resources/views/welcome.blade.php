@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Load Balancer Demo - Laravel 12</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-gray-950 text-gray-100 min-h-screen">
     <nav class="bg-gray-900 border-b border-gray-800 px-6 py-3 flex items-center gap-6">
         <span class="font-bold text-orange-400 text-lg">⚖️ LB Demo</span>
@@ -37,6 +39,36 @@
                 <a href="/load-balancer" class="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-orange-700 transition">
                     <h3 class="text-lg font-semibold text-white mb-2">⚖️ Algorithm Demo</h3>
                     <p class="text-sm text-gray-400">Simulate requests through Round Robin, Least Connections, IP Hash, and Weighted Round Robin.</p>
+                </a>
+
+                <!-- Dynamic Server Weights -->
+                <a href="{{ route('load-distribution.weights') }}"
+                    class="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-orange-700 transition">
+
+                    <h3 class="text-lg font-semibold text-white mb-2">
+                        ⚖️ Dynamic Server Weights
+                    </h3>
+
+                    <p class="text-sm text-gray-400">
+                        Dynamically configure server weights and simulate
+                        Weighted Round Robin traffic distribution.
+                    </p>
+
+                </a>
+
+                <!-- Load Distribution Analyzer -->
+                <a href="{{ route('load-distribution.analyzer') }}"
+                    class="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-orange-700 transition">
+
+                    <h3 class="text-lg font-semibold text-white mb-2">
+                        📊 Load Distribution Analyzer
+                    </h3>
+
+                    <p class="text-sm text-gray-400">
+                        Analyze traffic distribution, server utilization,
+                        deviation, and overall load balance score.
+                    </p>
+
                 </a>
 
                 <a href="/health" class="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-orange-700 transition">
@@ -106,4 +138,5 @@
         </div>
     </main>
 </body>
+
 </html>

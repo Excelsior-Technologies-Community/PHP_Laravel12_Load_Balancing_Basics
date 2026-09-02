@@ -10,6 +10,7 @@ use App\Http\Controllers\RateLimitDemoController;
 use App\Http\Controllers\ServerFailoverController;
 use App\Http\Controllers\ServiceDiscoveryController;
 use App\Http\Controllers\SessionPersistenceController;
+use App\Http\Controllers\LoadDistributionController;
 use Illuminate\Support\Facades\Route;
 
 // Welcome
@@ -110,4 +111,28 @@ Route::prefix('cache-demo')->group(function () {
     Route::post('/delete', [CacheDemoController::class, 'delete'])->name('cache.delete');
     Route::post('/clear', [CacheDemoController::class, 'clear'])->name('cache.clear');
     Route::get('/stats', [CacheDemoController::class, 'stats']);
+});
+
+// Load Distribution Management & Analysis
+Route::prefix('load-distribution')->group(function () {
+
+    // Dynamic server weights
+    Route::get('/weights', [LoadDistributionController::class, 'weights'])
+        ->name('load-distribution.weights');
+
+    Route::post('/weights/{server}', [LoadDistributionController::class, 'updateWeight'])
+        ->name('load-distribution.weights.update');
+
+    Route::get('/weight-configuration', [LoadDistributionController::class, 'weightConfiguration'])
+        ->name('load-distribution.weight-configuration');
+
+    Route::post('/simulate-weighted', [LoadDistributionController::class, 'simulateWeightedTraffic'])
+        ->name('load-distribution.simulate-weighted');
+
+    // Load distribution analyzer
+    Route::get('/analyzer', [LoadDistributionController::class, 'analyzer'])
+        ->name('load-distribution.analyzer');
+
+    Route::get('/analyze', [LoadDistributionController::class, 'analyze'])
+        ->name('load-distribution.analyze');
 });
